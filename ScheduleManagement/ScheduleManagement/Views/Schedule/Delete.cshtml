@@ -1,0 +1,18 @@
+﻿@model Schedule
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h1>Delete</h1>
+<div class="card w-75 mb-3">
+    <div class="card-body">
+        <h5 class="card-title">Do you really want to delete?</h5>
+        <form method="post" asp-controller="Schedule" asp-action="Delete">
+            <input type="hidden" asp-for="Id" />
+            <button type="submit" class="btn btn-danger">Yes</button>
+            <a class="btn btn-warning" asp-controller="Home" asp-action="Index">No</a>
+        </form>
+        
+        
+    </div>
+</div>
