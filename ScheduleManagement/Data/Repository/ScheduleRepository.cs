@@ -33,7 +33,7 @@ namespace Data.Repository {
             _context.SaveChanges();
         }
 
-        public void Edit(int Id, Schedule schedule) {
+        public void Edit(Schedule schedule) {
             _context.Update(schedule);
             _context.SaveChanges();
         }

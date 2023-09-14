@@ -1,6 +1,7 @@
 ﻿using Data.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using ScheduleManagement.Models;
+using System.Linq.Expressions;
 
 namespace ScheduleManagement.Controllers {
 
@@ -12,8 +13,17 @@ namespace ScheduleManagement.Controllers {
 
 
         public IActionResult ScheduleIndex() {
-            var data = _scheduleRepository.Get();
-            return View(data);
+            try {
+
+                var data = _scheduleRepository.Get();
+                if(data is null) {
+                    return StatusCode(StatusCodes.Status404NotFound);
+                }
+                return View(data);
+            }
+            catch {
+                return StatusCode(StatusCodes.Status500InternalServerError);
+            }
         }
 
 
@@ -24,18 +34,76 @@ namespace ScheduleManagement.Controllers {
 
         [HttpGet]
         public IActionResult Delete(int Id) {
-            Schedule schedule = _scheduleRepository.Get().FirstOrDefault(i => i.Id == Id);
+            try {
+                Schedule schedule = _scheduleRepository.Get().FirstOrDefault(i => i.Id == Id);
+                if(schedule is null) {
+                    return StatusCode(StatusCodes.Status404NotFound);
+                }
 
+                return View(schedule);
+            }
+            catch {
+                return StatusCode(StatusCodes.Status500InternalServerError);
 
-            return View(schedule);
-        } 
+            }
+            
+        }
 
 
         [HttpPost]
-        public void Delete(Schedule schedule) {
-            
-            _scheduleRepository.Delete(schedule);
+        public IActionResult Delete(Schedule schedule) {
 
+            try {
+                if(schedule is null) {
+                    return StatusCode(StatusCodes.Status404NotFound);
+                }
+                _scheduleRepository.Delete(schedule);
+
+                return RedirectToAction("ScheduleIndex");
+            }
+            catch {
+                return StatusCode(StatusCodes.Status500InternalServerError);
+            }
+
+            
+        }
+
+        [HttpGet]
+        public IActionResult Edit(int Id) {
+
+
+            try {
+                Schedule schedule = _scheduleRepository.Get().FirstOrDefault(i => i.Id == Id);
+                if (schedule is null) {
+                    return StatusCode(StatusCodes.Status404NotFound);
+
+                }
+                return View(schedule);
+
+            }
+            catch (Exception){
+                return StatusCode(500);
+            }
+
+           
+
+        }
+        [HttpPost]
+        
+        public IActionResult Edit(Schedule schedule) {
+            try {
+                if(schedule is null) {
+                    return StatusCode(StatusCodes.Status404NotFound);
+                }
+                _scheduleRepository.Edit(schedule);
+
+                return RedirectToAction("ScheduleIndex");
+            }
+            catch {
+                return StatusCode(StatusCodes.Status500InternalServerError);
+
+            }
+            
         }
 
 

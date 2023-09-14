@@ -1,37 +1,44 @@
-﻿@{
+﻿@model Schedule
+@{
     ViewData["Title"] = "CreateSchedule";
 }
 
-<h1>CreateSchedule</h1>
+<h1>Edit Schedule</h1>
+<form method="post" asp-controller="Schedule" asp-action="Edit">
+    <input type="hidden" asp-for="Id" />
+    <div class="input-group mb-3">
+        <span class="input-group-text" id="basic-addon1"></span>
+    <input type="text" class="form-control" asp-for="Members" placeholder="Username" value="@Model.Members" aria-label="Username" aria-describedby="basic-addon1">
+    </div>
 
-<div class="input-group mb-3">
-    <span class="input-group-text" id="basic-addon1"></span>
-    <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
-</div>
-
-<div class="input-group mb-3">
-    <input type="text" class="form-control" placeholder="Meeting Name" aria-label="Recipient's username" aria-describedby="basic-addon2">
-    <span class="input-group-text" id="basic-addon2"></span>
-</div>
+    <div class="input-group mb-3">
+        <input type="text" class="form-control" placeholder="Meeting Name" asp-for="Name" value="@Model.Name" aria-label="Recipient's username" aria-describedby="basic-addon2">
+        <span class="input-group-text" id="basic-addon2"></span>
+    </div>
 
 
-<div class="input-group mb-3">
-    <span class="input-group-text">Local Date</span>
-    <input type="text" class="form-control">
-</div>
-<div class="input-group mb-3">
-    <span class="input-group-text">Exclusive or Shared?</span>
-    <input type="text" class="form-control">
-</div>
+    <div class="input-group mb-3">
+        <span class="input-group-text">Local Date</span>
+        <input type="text" class="form-control" asp-for="LocalDate" value="@Model.LocalDate"> 
+    </div>
+    <div class="input-group mb-3">
+        <span class="input-group-text">Exclusive or Shared?</span>
+        <input type="text" class="form-control" asp-for="ExclusiveOrShared" value="@Model.ExclusiveOrShared">
+    </div>
 
-<div class="input-group mb-3">
-    <input type="text" class="form-control" placeholder="Participants" aria-label="Username">
-    <span class="input-group-text"></span>
-</div>
+    <div class="input-group mb-3">
+        <input type="text" class="form-control" placeholder="Participants"  value="@Model.Members" aria-label="Username">
+        <span class="input-group-text"></span>
+    </div>
 
-<div class="input-group">
-    <span class="input-group-text">Description</span>
-    <textarea class="form-control" aria-label="With textarea"></textarea>
-</div>
+    <div class="input-group">
+        <span class="input-group-text">Description</span>
+        <textarea class="form-control" asp-for="Description" aria-label="With textarea"> @Model.Description</textarea>
+    </div>
+    
+        <button type="submit" class="btn btn-warning mt-4">Edit</button>
+        <a class="btn btn-danger mt-4" asp-controller="Schedule" asp-action="ScheduleIndex"> No </a>
 
-<button type="submit" class="btn btn-warning mt-4">Edit</button>
+    </form>
+
+

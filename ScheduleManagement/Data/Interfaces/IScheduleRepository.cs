@@ -9,7 +9,7 @@ namespace Data.Interfaces {
     public interface IScheduleRepository {
         public IEnumerable<Schedule> Get();
         public void Create(Schedule schedule);
-        public void Edit(int Id, Schedule schedule);
+        public void Edit(Schedule schedule);
         public void  Delete(Schedule schedule);
     }
 }

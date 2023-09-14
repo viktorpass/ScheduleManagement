@@ -16,9 +16,9 @@
         <p class="card-text">@schedule.Members</p>
         <h5 class="card-title">Date: </h5>
         <p class="card-text">@schedule.LocalDate </p>
-        <a href="#" class="btn btn-success">More Info</a>
+        
         <a href="#" class="btn btn-primary">Add Member</a>
-        <a href="#" class="btn btn-warning">Edit</a>
+        <a class="btn btn-warning" asp-controller="Schedule" asp-action="Edit" asp-route-id="@schedule.Id">Edit</a>
         <a class="btn btn-danger" asp-controller="Schedule" asp-action="Delete" asp-route-id="@schedule.Id">Delete</a>
             
             
