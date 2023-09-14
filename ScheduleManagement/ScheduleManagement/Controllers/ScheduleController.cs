@@ -27,10 +27,33 @@ namespace ScheduleManagement.Controllers {
         }
 
 
-        public IActionResult CreateSchedule() {
-            return View();
+        public IActionResult Create() {
+            try {
+                return View();
+            }
+            catch {
+                return StatusCode(StatusCodes.Status500InternalServerError);
+            }
+            
         }
+        [HttpPost]
 
+        public IActionResult Create(Schedule schedule) {
+
+            try {
+                if (schedule is null) {
+                    return StatusCode(StatusCodes.Status404NotFound);
+                }
+                _scheduleRepository.Create(schedule);
+
+                return RedirectToAction("ScheduleIndex");
+            }
+            catch {
+                return StatusCode(StatusCodes.Status500InternalServerError);
+            }
+
+
+        }
 
         [HttpGet]
         public IActionResult Delete(int Id) {

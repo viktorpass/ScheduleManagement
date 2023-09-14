@@ -2,13 +2,19 @@
 @{
     ViewData["Title"] = "Schedule";
 }
-<h3>Schedule</h3>
-<a asp-controller="Schedule" asp-action="CreateSchedule" class="btn btn-success mb-3">Create a new</a>
+    <div class="">
+    <h3 class="d-inline" style="padding-right:80%;">Schedule</h3>
+    <a asp-controller="Schedule" asp-action="Create" class="btn btn-success mb-3 mt-1 position-relative">Create a new</a>
+
+    </div>
+   
+
 @foreach(var schedule in Model) {
     
 
-<div class="card ">
+    <div class="card">
     <h5 class="card-header">@schedule.Name </h5>
+        
     <div class="card-body">
         <h5 class="card-title">Description</h5>
         <p class="card-text">@schedule.Description</p>
@@ -17,7 +23,7 @@
         <h5 class="card-title">Date: </h5>
         <p class="card-text">@schedule.LocalDate </p>
         
-        <a href="#" class="btn btn-primary">Add Member</a>
+        @*<a href="#" class="btn btn-primary">Add Member</a>*@
         <a class="btn btn-warning" asp-controller="Schedule" asp-action="Edit" asp-route-id="@schedule.Id">Edit</a>
         <a class="btn btn-danger" asp-controller="Schedule" asp-action="Delete" asp-route-id="@schedule.Id">Delete</a>
             

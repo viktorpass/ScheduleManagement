@@ -1,0 +1,42 @@
+﻿@model Schedule
+@{
+    ViewData["Title"] = "Create Schedule";
+}
+
+<h1>CreateSchedule</h1>
+<form method="post" asp-controller="Schedule" asp-action="Create">
+<div class="input-group mb-3">
+        <span class="input-group-text">Username</span>
+    <input type="text" class="form-control" placeholder="Username" asp-for="Members" aria-label="Username" aria-describedby="basic-addon1">
+</div>
+
+<div class="input-group mb-3">
+        <span class="input-group-text">Meeting Name</span>
+        <input type="text" class="form-control" placeholder="Meeting Name" asp-for="Name" aria-label="Recipient's username" aria-describedby="basic-addon2">
+  
+</div>
+
+
+<div class="input-group mb-3">
+  <span class="input-group-text">Local Date</span>
+        <input type="datetime-local" class="form-control" asp-for="LocalDate">
+</div>
+<div class="input-group mb-3">
+    <span class="input-group-text">Exclusive or Shared?</span>
+        <input type="text" class="form-control" asp-for="ExclusiveOrShared">
+</div>
+
+<div class="input-group mb-3">
+        <span class="input-group-text">Participants</span>
+  <input type="text" class="form-control" placeholder="Participants" aria-label="Username" asp-for="Members">
+        
+</div>
+
+<div class="input-group">
+        <span class="input-group-text">Description</span>
+        <textarea class="form-control" aria-label="With textarea" asp-for="Description"></textarea>
+</div>
+
+    <button type="submit" class="btn btn-success mt-4 ">Create</button>
+    <a class="btn btn-danger mt-4" asp-controller="Schedule" asp-action="ScheduleIndex">Back</a>
+</form>
